@@ -19,8 +19,7 @@ export default function CompletedBookings() {
   useEffect(() => {
     getBookings().then((data) => {
       if (data.success) {
-        const filtered = data.bookings.filter((b: Booking) => b.status === "completed");
-        setBookings(filtered);
+        setBookings(data.bookings.filter((b: Booking) => b.status === "completed"));
       }
     });
   }, []);
@@ -49,13 +48,13 @@ export default function CompletedBookings() {
               </tr>
             </thead>
             <tbody>
-              {bookings.map((booking) => (
-                <tr key={booking._id} className="border-b hover:bg-gray-50">
-                  <td className="py-3">{booking.name}</td>
-                  <td className="py-3">{booking.testName}</td>
-                  <td className="py-3">{booking.phone}</td>
-                  <td className="py-3">{booking.email}</td>
-                  <td className="py-3">{formatDate(booking.createdAt)}</td>
+              {bookings.map((b) => (
+                <tr key={b._id} className="border-b hover:bg-gray-50">
+                  <td className="py-3">{b.name}</td>
+                  <td className="py-3">{b.testName}</td>
+                  <td className="py-3">{b.phone}</td>
+                  <td className="py-3">{b.email}</td>
+                  <td className="py-3">{formatDate(b.createdAt)}</td>
                 </tr>
               ))}
             </tbody>
